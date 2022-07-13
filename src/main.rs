@@ -1,7 +1,7 @@
-
+use std::collections::HashMap;
 
 fn main() {
-  /*   let a = 10;
+ /*    let a = 10;
     let b = 110;
     println!("Hello, world! a={}, b={}",a,b); 
 
@@ -106,15 +106,89 @@ while i < 5{
     }
 }
 
-*/
-
 //  match 
 
-let i = 5;
+let i = 2;
 match i {
-    0 -> println!("0")
+    0 => println!("0"),
+    1 | 2 => println!("1,2"),
+    3..=4 => println!("3,4"),
+    _ => println!("default")
+
 }
 
+
+struct Bird {
+    name: String,
+    attack : u64
+}
+impl Bird {
+    fn print_name(&self){
+        println!("{}", self.name);
+    }
+}
+trait Animal {
+    fn can_fly(&self) -> bool;
+    fn is_animal(&self) -> bool{
+        true
+    }
+}
+
+
+
+impl Animal for Bird{
+    fn can_fly(&self) -> bool{
+        false
+    }
+}
+
+
+let name = String::from("Bird");
+let bird = Bird { name, attack: 3};
+bird.print_name();
+println!("{} {}", bird.can_fly(), bird.is_animal());
+
+#[derive(Debug)]
+enum MyEnum {
+    A,
+    B(i32),
+    C{x:i32,y:i32}
+}
+let a: MyEnum = MyEnum::A;
+let b : MyEnum = MyEnum::B(5);
+let c : MyEnum = MyEnum::C{x:10,y:20};
+println!("{:?}", a);
+println!("{:?}", b);
+println!("{:?}", c);
+
+
+// vector
+let mut vec: Vec<i64> = vec![1,2,3,4];
+vec.len();
+vec[0];
+vec.push(6);
+vec.remove(0);
+println!("{:?}", vec)
+*/
+
+let mut map = HashMap::new();
+map.insert(0,"H1");
+map.insert(1,"H2");
+println!("{:?}",map);
+
+
+match map.get(&0){
+    Some(str) => println!("{}", str),
+    _ => println!("Doesnt exist in map"),
+}
+
+match map.get(&2){
+    Some(str) => println!("{}", str),
+    _ => println!("Doesnt exist in map"),
+}
+
+map.remove(&0);
+println!("{:?}",map);
 
 
 
